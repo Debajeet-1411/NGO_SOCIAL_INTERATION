@@ -1,0 +1,28 @@
+:root{
+  --bg:#f4f7fb; --card:#fff; --muted:#6b7280; --accent:#0b6efd; --accent-2:#05b29b;
+  --danger:#ef4444;
+  font-family:'Inter',system-ui;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:#111}
+.wrap{max-width:1200px;margin:20px auto;padding:16px}
+header{display:flex;align-items:center;justify-content:space-between}
+.logo{width:50px;height:50px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#6b8df6);display:flex;align-items:center;justify-content:center;color:white;font-weight:800}
+.nav{display:flex;gap:10px;align-items:center}
+.btn{background:var(--accent);color:white;padding:8px 12px;border-radius:8px;border:0;cursor:pointer;font-weight:600}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid rgba(11,110,253,0.12)}
+.card{background:var(--card);border-radius:10px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.05);margin-bottom:14px}
+.container{display:grid;grid-template-columns:1fr 300px;gap:14px}
+.feed{display:flex;flex-direction:column;gap:10px}
+.request{display:flex;justify-content:space-between;gap:12px;background:#fafcff;padding:12px;border-radius:10px}
+.badge{padding:4px 8px;border-radius:999px;background:rgba(11,110,253,0.08);color:var(--accent);font-weight:700;font-size:13px}
+.avatar{width:50px;height:50px;border-radius:12px;background:linear-gradient(135deg,var(--accent-2),#2dd4bf);display:flex;align-items:center;justify-content:center;color:white;font-weight:800}
+.small{font-size:13px;color:var(--muted)}
+.tabs{display:flex;gap:8px;margin:8px 0}
+.tab{padding:6px 10px;border-radius:8px;cursor:pointer}
+.tab.active{background:rgba(11,110,253,0.08);font-weight:700}
+input,textarea,select{width:100%;padding:8px;border-radius:8px;border:1px solid #ddd;margin:6px 0}
+footer{text-align:center;font-size:13px;color:var(--muted);padding:16px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center}
+.modal-box{width:420px;max-width:90%}
+.hidden{display:none}

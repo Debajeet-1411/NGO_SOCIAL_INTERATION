@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NGO Bridge — Enhanced Prototype</title>
+  <link href="style.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="wrap" id="app">
+  <header>
+    <a href="#" onclick="navigate('feed')" class="brand">
+      <div class="logo">NB</div>
+      <div>
+        <h1>NGO Bridge</h1>
+        <div class="small">Connect • Rescue • Empower</div>
+      </div>
+    </a>
+
+    <div class="nav">
+      <div class="searchbar">
+        <input id="searchInput" type="text" placeholder="Search requests..." />
+      </div>
+      <button class="btn ghost" onclick="navigate('blogs')">Blogs</button>
+      <button class="btn ghost" onclick="navigate('about')">About</button>
+      <button class="btn" id="authBtn" onclick="openAuth()">Login</button>
+      <button class="btn ghost icon" id="themeToggleBtn">☀️</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <main>
+      <div class="page" id="page-feed">
+        <div class="card">
+          <div class="flex-between-center">
+            <div>
+              <div class="card-title">Active Requests</div>
+              <div class="small">Community needs updated in real-time</div>
+            </div>
+            <button class="btn" onclick="openCreateRequest()">+ Create Request</button>
+          </div>
+
+          <div class="tabs" id="filters">
+            <div class="tab active" data-filter="">All</div>
+            <div class="tab" data-filter="food">Food</div>
+            <div class="tab" data-filter="clothes">Clothes</div>
+            <div class="tab" data-filter="medical">Medical</div>
+            <div class="tab" data-filter="volunteer">Volunteer</div>
+          </div>
+          <select id="sortSelect">
+            <option value="recent">Sort by: Newest</option>
+            <option value="urgent">Sort by: Urgency</option>
+            <option value="near">Sort by: Nearest</option>
+          </select>
+          <div class="feed" id="feed"></div>
+        </div>
+      </div>
+
+      <div class="page hidden" id="page-blogs">
+        <div class="card">
+          <div class="card-title">Community Blogs</div>
+          <div class="small">Stories, tips, and updates from the community.</div>
+          <div class="blog-list" id="blogsList"></div>
+        </div>
+      </div>
+        
+      <div class="page hidden" id="page-about">
+          <div class="card">
+              <div class="card-title">About NGO Bridge</div>
+              <p>This platform is a demonstration project created to connect NGOs, volunteers, and donors efficiently.</p>
+              <p>Our mission is to bridge the gap between those in need and those who can help, creating a stronger, more supportive community.</p>
+          </div>
+      </div>
+
+    </main>
+
+    <aside>
+      <div class="card profile-card">
+        <div class="avatar" id="avatar">G</div>
+        <div>
+          <div id="profileName" class="profile-name">Guest</div>
+          <div class="small" id="profileRole">Visitor</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Quick Actions</div>
+        <div class="sidebar-list">
+          <button class="btn ghost" onclick="simulateHelp()">Find Nearby Helpers</button>
+          <button class="btn ghost" onclick="signOut()">Sign Out</button>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    NGO Bridge — Enhanced Prototype
+  </footer>
+</div>
+
+<div id="authModal" class="modal-container hidden"><div class="modal-box card">
+  <div class="flex-between-center">
+    <div class="modal-title">Welcome!</div>
+    <div class="close-btn" onclick="closeAuth()">✕</div>
+  </div>
+  <p class="small">Sign up or sign in to continue.</p>
+  <input id="authEmail" type="email" placeholder="you@example.com" />
+  <select id="authRole">
+    <option value="ngo">I represent an NGO</option>
+    <option value="donor">I am a Donor</option>
+    <option value="volunteer">I am a Volunteer</option>
+  </select>
+  <div class="flex-gap">
+    <button class="btn" onclick="authSignIn()">Sign in / Sign up</button>
+  </div>
+</div></div>
+
+<div id="createPanel" class="modal-container hidden"><div class="modal-box card">
+  <div class="flex-between-center">
+    <div class="modal-title">Create a Request</div>
+    <div class="close-btn" onclick="closeCreate()">✕</div>
+  </div>
+  <form id="createForm" onsubmit="event.preventDefault();publishRequest()">
+    <input id="rTitle" placeholder="Request title (e.g., 'Warm blankets for shelter')" required />
+    <div class="flex-gap">
+      <select id="rCategory"><option value="food">Food</option><option value="clothes">Clothes</option><option value="medical">Medical</option><option value="volunteer">Volunteer</option></select>
+      <select id="rUrgency"><option value="high">High Urgency</option><option value="medium">Medium Urgency</option><option value="low">Low Urgency</option></select>
+    </div>
+    <textarea id="rDesc" placeholder="Describe the need..." required></textarea>
+    <input id="rContact" placeholder="Public contact info (Phone or Email)" />
+    <button class="btn" type="submit">Publish Request</button>
+  </form>
+</div></div>
+
+<div id="msgModal" class="modal-container hidden"><div class="modal-box card">
+  <div class="flex-between-center">
+    <div class="modal-title" id="msgTitle">Contact NGO</div>
+    <div class="close-btn" onclick="closeMsg()">✕</div>
+  </div>
+  <textarea id="msgText" placeholder="Write a short message..." style="min-height:100px"></textarea>
+  <input type="text" id="msgContact" placeholder="Your contact info" />
+  <div class="flex-end">
+    <button class="btn" onclick="sendMsg()">Send Message</button>
+  </div>
+</div></div>
+
+<div id="toast-container"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
