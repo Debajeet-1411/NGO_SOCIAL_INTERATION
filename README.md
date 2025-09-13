@@ -21,3 +21,11 @@ npm install
 npm run dev    # starts on http://localhost:5173
 
 Open the frontend in browser. Register an NGO account then create a request.
+
+## Disclaimar
+it is still in development face so many features wont work.
+if u still want to preview the project. copy:
+-index.html
+-style.css
+-script.js
+and double click on index.html
